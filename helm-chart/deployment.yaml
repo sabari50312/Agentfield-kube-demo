@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agentfield-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agentfield-test
+  template:
+    metadata:
+      labels:
+        app: agentfield-test
+    spec:
+      containers:
+      - name: agentfield-test
+        image: agentfield-demo:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
