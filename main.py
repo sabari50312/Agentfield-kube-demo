@@ -1,17 +1,19 @@
 from agentfield import Agent, AIConfig
-from reasoners import reasoners_router
-import os
 from dotenv import load_dotenv
+
+from reasoners import reasoners_router
+
 load_dotenv()
 
 # Basic agent setup - works immediately
 app = Agent(
     node_id="my-agent",
-    agentfield_server="http://localhost:8080",
+    agentfield_server="http://agentfield-control-plane:8080",
+    callback_url="http://my-agent:8001",   
     version="1.0.0",
     dev_mode=True,
     ai_config=AIConfig(
-        model="openai/gpt-4o",  # LiteLLM format: provider/model
+        model="openai/gpt-4o",
         temperature=0.7,
     ),
 )

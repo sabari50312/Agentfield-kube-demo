@@ -1,5 +1,5 @@
 from agentfield import AgentRouter
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 # Group related reasoners with a router
 reasoners_router = AgentRouter(prefix="demo", tags=["example"])
@@ -19,7 +19,7 @@ async def echo(message: str) -> dict:
         "original": message,
         "echoed": message,
         "length": len(message)
-    }
+    } 
 
 
 # 🔧 Uncomment when AI is configured in main.py:
@@ -29,6 +29,7 @@ class SentimentAnalysis(BaseModel):
     confidence: float = Field(ge=0.0, le=1.0, description="Confidence score")
     key_phrases: list[str] = Field(description="Important phrases from the text")
     reasoning: str = Field(description="Explanation of the analysis")
+    model_config = ConfigDict(json_schema_extra={"additionalProperties": False})
 
 
 @reasoners_router.reasoner()

@@ -39,7 +39,7 @@ WORKDIR /my-agent
 # Install Python requirements
 # COPY requirements.txt .
 # RUN pip install -r requirements.txt
-RUN uv pip install agentfield python-dotenv
+RUN uv pip install agentfield python-dotenv psycopg2-binary
 
 COPY . .
 
